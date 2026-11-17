@@ -1,0 +1,13 @@
+target/
+data/
+.env
+.env.*
+!.env.example
+.aws/
+.codex/
+.agents/
+*.log
+.idea/
+.vscode/
+*.iml
+resposta.mp3
