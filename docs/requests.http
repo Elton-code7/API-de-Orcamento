@@ -1,0 +1,41 @@
+### VS Code REST Client / clientes compatíveis. Substitua chave e ID.
+@base = http://localhost:8080
+@key = coloque_a_mesma_APP_API_KEY_do_ambiente
+@id = substitua_pelo_id_retornado
+
+GET {{base}}/api/health
+
+### Texto → proposta
+POST {{base}}/api/commands/text
+X-API-Key: {{key}}
+Content-Type: application/json
+
+{"text":"Registre uma despesa de 35,50 reais com almoço, categoria alimentação, em 17 de novembro de 2026."}
+
+### Consultar proposta
+GET {{base}}/api/commands/{{id}}
+X-API-Key: {{key}}
+
+### Confirmar uma única vez (repetição retorna a mesma transação)
+POST {{base}}/api/commands/{{id}}/confirm
+X-API-Key: {{key}}
+
+### Cancelar proposta pendente
+POST {{base}}/api/commands/{{id}}/cancel
+X-API-Key: {{key}}
+
+### Extrato
+GET {{base}}/api/transactions?start=2026-11-01&end=2026-11-30&page=0&size=20
+X-API-Key: {{key}}
+
+### Saldo
+GET {{base}}/api/transactions/summary?start=2026-11-01&end=2026-11-30
+X-API-Key: {{key}}
+
+### Auditoria
+GET {{base}}/api/commands/{{id}}/audit
+X-API-Key: {{key}}
+
+### Resposta em voz sintetizada por IA (MP3)
+GET {{base}}/api/commands/{{id}}/speech
+X-API-Key: {{key}}

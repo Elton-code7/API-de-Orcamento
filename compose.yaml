@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:?Configure OPENAI_API_KEY no .env}
+      APP_API_KEY: ${APP_API_KEY:?Configure APP_API_KEY no .env}
+      OPENAI_CHAT_MODEL: ${OPENAI_CHAT_MODEL:-gpt-4o-mini}
+      OPENAI_TRANSCRIPTION_MODEL: ${OPENAI_TRANSCRIPTION_MODEL:-whisper-1}
+      OPENAI_SPEECH_MODEL: ${OPENAI_SPEECH_MODEL:-tts-1}
+      APP_ZONE: ${APP_ZONE:-America/Sao_Paulo}
+      SERVER_ADDRESS: 0.0.0.0
+    volumes:
+      - budget-data:/app/data
+volumes:
+  budget-data:

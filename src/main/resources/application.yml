@@ -1,0 +1,46 @@
+server:
+  address: ${SERVER_ADDRESS:127.0.0.1}
+  port: ${PORT:8080}
+spring:
+  application:
+    name: orcamento-voz-api
+  datasource:
+    url: ${DB_URL:jdbc:h2:file:./data/orcamento;DB_CLOSE_ON_EXIT=FALSE}
+    username: sa
+    password: ${DB_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB
+  ai:
+    model:
+      embedding: none
+      image: none
+      moderation: none
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: ${OPENAI_CHAT_MODEL:gpt-4o-mini}
+          temperature: 0.1
+          max-tokens: 800
+      audio:
+        transcription:
+          options:
+            model: ${OPENAI_TRANSCRIPTION_MODEL:whisper-1}
+            language: pt
+            response-format: TEXT
+        speech:
+          options:
+            model: ${OPENAI_SPEECH_MODEL:tts-1}
+            voice: alloy
+            response-format: mp3
+    retry:
+      max-attempts: 2
+app:
+  api-key: ${APP_API_KEY}
+  zone: ${APP_ZONE:America/Sao_Paulo}

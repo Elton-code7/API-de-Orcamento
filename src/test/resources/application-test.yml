@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:budgettest;DB_CLOSE_DELAY=-1
+  ai:
+    openai:
+      api-key: test-not-a-real-key
+    retry:
+      max-attempts: 1
+app:
+  api-key: test-key-with-more-than-24-characters
